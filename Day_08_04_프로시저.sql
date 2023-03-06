@@ -1,7 +1,7 @@
 /*
     프로시저(PROCEDURE)
     1. 하나의 프로시저에 여러 개의 쿼리문을 작성해서 처리할 수 있다.
-    2. 여러 개의 쿼리문이 필요한 서비르르 프로시저로 작성해 두면 사용이 편리하다.
+    2. 여러 개의 쿼리문이 필요한 서비스 프로시저로 작성해 두면 사용이 편리하다.
        (예시 : 은행 이체(UPDATE 쿼리 2개로 구성))
     3. 형식
         CREATE [OR REPLAC] PROCEDURE 프로시저명[(매개변수)]
@@ -60,6 +60,17 @@ EXCEPTION
     WHEN OTHERS THEN
          DBMS_OUTPUT.PUT_LINE('예외가 발생했습니다.');
 END;
+-- 소수점 테스트
+CREATE OR REPLACE PROCEDURE MY_CEIL(N IN NUMBER, DIGIT IN NUMBER)
+IS
+GG NUMBER;
+BEGIN
+    GG := CEIL(N * POWER(10, DIGIT)) / POWER(10,DIGIT); 
+    DBMS_OUTPUT.PUT_LINE(GG);
+END;
+EXECUTE MY_CEIL(1.1111, 0);
+EXECUTE MY_CEIL(1.1111, 3);
+
 -- 프로시저2 호출(실행하기)
 EXECUTE PROC3(0);
 
